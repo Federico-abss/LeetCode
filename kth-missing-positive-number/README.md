@@ -1,3 +1,4 @@
+[Discussion Post (created on 6/0/2021 at 11:21)](https://leetcode.com/problems/kth-missing-positive-number/solution/)  
 <h2>1539. Kth Missing Positive Number</h2><h3>Easy</h3><hr><div><p>Given an array <code>arr</code>&nbsp;of positive integers&nbsp;sorted in a <strong>strictly increasing order</strong>, and an integer <code><font face="monospace">k</font></code>.</p>
 
 <p><em>Find the </em><font face="monospace"><code>k<sup>th</sup></code></font><em>&nbsp;positive integer that is missing from this array.</em></p>
