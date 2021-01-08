@@ -1,3 +1,4 @@
+[Discussion Post (created on 8/0/2021 at 21:7)](https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/submissions/)  
 <h2>1005. Maximize Sum Of Array After K Negations</h2><h3>Easy</h3><hr><div><p>Given an array <code>A</code> of integers, we <strong>must</strong>&nbsp;modify the array in the following way: we choose an <code>i</code>&nbsp;and replace&nbsp;<code>A[i]</code> with <code>-A[i]</code>, and we repeat this process <code>K</code> times in total.&nbsp; (We may choose the same index <code>i</code> multiple times.)</p>
 
 <p>Return the largest possible sum of the array after modifying it in this way.</p>
