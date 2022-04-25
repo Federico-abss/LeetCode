@@ -5,12 +5,6 @@ class Solution:
         
         candidate = 2
         prev = 1
-        
-        while candidate ** 2 < x:
-            prev = candidate
-            candidate **= 2
-            
-        candidate = prev << 1
             
         while candidate ** 2 < x:
             prev = candidate 
