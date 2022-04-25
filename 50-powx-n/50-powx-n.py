@@ -1,15 +1,3 @@
-def myPowNaive(x: float, n: int):
-    if n == 0:
-        return 1
-    
-    result = x
-    while n > 1:
-        result *= x
-        n -= 1
-            
-    return result
-    
-
 class Solution:
     def myPow(self, x: float, n: int) -> float:
         
@@ -22,15 +10,15 @@ class Solution:
         if n < 0:
             x = 1 / x
             n = -n
-
-        target = floor(sqrt(n))
-        remainder = n - target * target
-
-        result = myPowNaive(x, target)
-        result = myPowNaive(result, target)
-        result *= myPowNaive(x, remainder)
-
+        
+        result = 1
+        while n > 0:
+            power = n
+            shift = 1
+            if (n&1): result *= x
+            n >>= 1
+            x *= x
+            
         return result
-    
 
         
