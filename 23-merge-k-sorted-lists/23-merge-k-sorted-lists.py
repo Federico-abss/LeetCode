@@ -32,25 +32,24 @@ def mergeTwoLists(l1: ListNode, l2: ListNode):
         cur.next = l2 
             
     return head.next
+
+
+def partition(lists: List[Optional[ListNode]], start: int, end: int) -> ListNode:
+    if start == end: 
+        return lists[start]
+    
+    mid = (end + start) // 2
+    l1 = partition(lists, start, mid)
+    l2 = partition(lists, mid+1, end)
+    return mergeTwoLists(l1, l2)
     
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        
-        lists2 = []
-        
         if not lists:
-            return
+            return None
         
-        while len(lists2) > 1 or len(lists) > 1:
-            while len(lists) > 1:
-                lists2.append(mergeTwoLists(lists.pop(), lists.pop()))
-                
-            while len(lists2) > 1:
-                lists.append(mergeTwoLists(lists2.pop(), lists2.pop()))
-                
-        
-        return mergeTwoLists(lists[0] if lists else None, lists2[0] if lists2 else None)
+        return partition(lists, 0, len(lists) - 1)
         
         
     
