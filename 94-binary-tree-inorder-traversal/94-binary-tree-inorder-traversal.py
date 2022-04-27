@@ -9,12 +9,24 @@ class Solution:
         result = []
         if not root: return result
         
-        if root.left:
-            result += self.inorderTraversal(root.left)
-        result += [root.val]
-        if root.right:
-            result += self.inorderTraversal(root.right)
+        stack = []
+        while root:
+            stack.append(root)
+            root = root.left
         
+        while stack: 
+            cur = stack.pop()
+            result.append(cur.val)
+            
+            if cur.right:
+                cur = cur.right
+                stack.append(cur)
+                while cur.left:
+                    cur = cur.left
+                    stack.append(cur)
+        
+            
         return result
+            
         
         
