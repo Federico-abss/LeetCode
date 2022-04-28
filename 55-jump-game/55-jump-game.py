@@ -3,20 +3,16 @@ class Solution:
         if len(nums) == 1:
             return True
         
-        idx = len(nums) - 2
-        target = idx + 1
+        maxDist = nums[0]
         
-        while idx >= 0:
-            if idx + nums[idx] >= target:
-                target = idx
-                
-            if target == 0:
-                return True
+        for idx, num in enumerate(nums[:-1]):
+            if idx > maxDist:
+                return False
             
-            idx -= 1
+            maxDist = max(maxDist, num + idx)
+
         
-        
-        return False
+        return maxDist >= len(nums) - 1
         
 
         
