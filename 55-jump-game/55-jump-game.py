@@ -5,7 +5,8 @@ class Solution:
             return True
         
         @lru_cache(maxsize=None)
-        def jumps(idx: int, jump: int) -> bool:
+        def jumps(idx: int) -> bool:
+            jump = nums[idx]
             if not jump:
                 return False
 
@@ -13,12 +14,12 @@ class Solution:
                 return True
 
             for num in range(jump, 0, -1):
-                if jumps(idx + num, nums[idx+num]):
+                if jumps(idx + num):
                     return True
 
             return False
         
-        return jumps(0, nums[0])
+        return jumps(0)
         
 
         
