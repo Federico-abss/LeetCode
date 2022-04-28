@@ -1,25 +1,22 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-
         if len(nums) == 1:
             return True
         
-        @lru_cache(maxsize=None)
-        def jumps(idx: int) -> bool:
-            jump = nums[idx]
-            if not jump:
-                return False
-
-            if idx + jump >= len(nums) - 1:
-                return True
-
-            for num in range(jump, 0, -1):
-                if jumps(idx + num):
-                    return True
-
-            return False
+        idx = len(nums) - 2
+        target = idx + 1
         
-        return jumps(0)
+        while idx >= 0:
+            if idx + nums[idx] >= target:
+                target = idx
+                
+            if target == 0:
+                return True
+            
+            idx -= 1
+        
+        
+        return False
         
 
         
