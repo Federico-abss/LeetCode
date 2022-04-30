@@ -1,22 +1,12 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        global reached
-        reached = False
         
-        @cache
-        def change(amount: int) -> int:
-            if not amount:
-                global reached 
-                reached = True
-                return 0
-            
-            minChange = float('inf')
+        minCoin = [0] + [float('inf') for _ in range(amount)]
+        
+        for idx, comb in enumerate(minCoin):
             for coin in coins:
-                if coin <= amount:
-                    minChange = min(minChange, 1 + change(amount - coin))
-                    
-            return minChange
-        
-        minChange = change(amount)
-        return minChange if reached else -1
+                if idx + coin < len(minCoin):
+                    minCoin[idx + coin] = min(minCoin[idx + coin], comb+1)
+                        
+        return minCoin[-1] if minCoin[-1] != float('inf') else -1
                     
