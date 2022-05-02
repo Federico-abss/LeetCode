@@ -10,20 +10,17 @@ class Node:
 
 class Solution:
     def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        if not root:
-            return
+        if not root or not root.left:
+            return root
         
-        currentLevel = root
-        while currentLevel.left:
-            cur = currentLevel
-            while cur:
-                cur.left.next = cur.right
-                if cur.next:
-                    cur.right.next = cur.next.left
-                
-                cur = cur.next
-            
-            currentLevel = currentLevel.left
-            
+        cur = root
+        while cur:
+            cur.left.next = cur.right
+            if cur.next:
+                cur.right.next = cur.next.left
+
+            cur = cur.next
+        
+        self.connect(root.left)    
         return root
             
