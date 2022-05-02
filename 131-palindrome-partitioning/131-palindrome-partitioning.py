@@ -1,8 +1,9 @@
-@cache
 def isPalindrome(s: str) -> bool:
-    return s == s[::-1]
-    
+    for idx in range(len(s)):
+        if s[idx] != s[-idx-1]: return False
+    return True
         
+    
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
         
