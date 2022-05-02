@@ -1,10 +1,10 @@
 class Solution:
     def reverseBits(self, n: int) -> int:
-
         result = 0
-        for i in range(32):
-            if (n&1): result |= 1
-            n >>= 1
+        
+        for shift in range(32):
             result <<= 1
+            isSignificantBit = n & 1 << shift
+            result |= 1 if isSignificantBit else 0
             
-        return result >> 1
+        return result
