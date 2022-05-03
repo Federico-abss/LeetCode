@@ -16,7 +16,7 @@ class Solution:
             return nums[idx] * calculateProductRight(idx + 1)
         
         result = [0] * len(nums)
-        
+        calculateProductLeft(len(nums)-1)
         for idx in range(len(nums)):
             result[idx] = calculateProductLeft(idx-1) * calculateProductRight(idx+1)
             
