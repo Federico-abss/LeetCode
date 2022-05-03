@@ -1,24 +1,17 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         
-        @cache
-        def calculateProductLeft(idx):
-            if idx < 0:
-                return 1
-            
-            return nums[idx] * calculateProductLeft(idx - 1)
-        
-        @cache
-        def calculateProductRight(idx):
-            if idx == len(nums):
-                return 1
-            
-            return nums[idx] * calculateProductRight(idx + 1)
-        
         result = [0] * len(nums)
-        calculateProductLeft(len(nums)-1)
-        for idx in range(len(nums)):
-            result[idx] = calculateProductLeft(idx-1) * calculateProductRight(idx+1)
+        right = 1
+        
+        for idx, num in enumerate(nums[::-1]):
+            result[-idx-1] = right
+            right *= num
+        
+        left = 1
+        for idx, num in enumerate(nums):
+            result[idx] *= left
+            left *= num
             
         return result
             
