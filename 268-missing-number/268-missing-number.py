@@ -1,4 +1,8 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        
-        return sum(n for n in range(len(nums)+1)) - sum(nums)
+        presentNumbers = 0
+        for idx, n in enumerate(nums):
+            presentNumbers ^= idx
+            presentNumbers ^= n
+            
+        return presentNumbers ^ len(nums)
