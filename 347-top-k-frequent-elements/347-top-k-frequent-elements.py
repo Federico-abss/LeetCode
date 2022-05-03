@@ -6,4 +6,12 @@ class Solution:
         for num in nums:
             hmap[num] += 1
             
-        return sorted(hmap.keys(), key = lambda x: hmap[x])[-k:]
+        q = []
+        result = []
+        for key, value in hmap.items():
+            heappush(q , (-value, key))
+            
+        for _ in range(k):
+            result.append(heappop(q)[1])
+            
+        return result
