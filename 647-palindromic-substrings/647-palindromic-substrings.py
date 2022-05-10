@@ -2,6 +2,7 @@ class Solution:
     def countSubstrings(self, s: str) -> int:
         count = 0
         
+        @cache
         def isPalindrome(subs: str) -> bool:
             return subs == subs[::-1]
                     
