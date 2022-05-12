@@ -4,17 +4,15 @@ class Solution:
             return max(nums)
         
         def houseRobberI(nums: List[int]) -> int:
-            money = [0] * len(nums)
-            money[0:2] = nums[0:2]
+            money = nums[0:2] + [0]
             
-            for idx, num in enumerate(nums[2:], 2):
-                if idx < 3:
-                    money[idx] = num + nums[idx-2]
-                    continue
-                
-                money[idx] = num + max(money[idx-3], money[idx-2])
+            cur = nums[0] + nums[2]
+            money[2] = cur
+            for num in nums[3:]:
+                cur = num + max(money[-2], money[-3])
+                money[0], money[1], money[2] = money[1], money[2], cur
             
-            return max(money[-2:])
+            return max(money)
         
         
         return max(houseRobberI(nums[1:]), houseRobberI(nums[:-1]))
