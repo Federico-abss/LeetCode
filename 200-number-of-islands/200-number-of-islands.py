@@ -17,7 +17,7 @@ class Solution:
         def union(x,y):
             xroot, yroot = find(x),find(y)
             if xroot == yroot: return 
-            parent[yroot] = xroot
+            parent[xroot] = yroot
             self.count -= 1
         
         
