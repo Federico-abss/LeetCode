@@ -7,25 +7,21 @@ class Node:
 """
 
 class Solution:
+    def __init__(self):
+        self.seen = dict()
+        
+        
     def cloneGraph(self, node: 'Node') -> 'Node':
         if not node:
             return
         
-        q = deque()
-        q.append(node)
-        
-        seen = dict()
         copy = Node(node.val)
-        seen[node] = copy
-        
-        while q:
-            cur = q.popleft()
-            curCopy = seen[cur]
-            for neighbor in cur.neighbors:
-                if neighbor not in seen:
-                    seen[neighbor] = Node(neighbor.val)
-                    q.append(neighbor)
-                curCopy.neighbors.append(seen[neighbor])
+        self.seen[node] = copy
+    
+        for neighbor in node.neighbors:
+            if neighbor not in self.seen:
+                self.seen[neighbor] = self.cloneGraph(neighbor)
+            copy.neighbors.append(self.seen[neighbor])   
             
         return copy
         
