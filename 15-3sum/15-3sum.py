@@ -1,32 +1,33 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         
-        numDict = defaultdict(list)
-        for idx, num in enumerate(nums):
-            numDict[num].append(idx)
+        nums.sort()
+        result = []
+
+        for l, num in enumerate(nums[:-2]):
+            if l > 0 and nums[l-1] == nums[l]:
+                continue
+            idx, r = l+1, len(nums)-1
             
-        if len(numDict.keys()) == 1:
-            if len(numDict[0]) > 2:
-                return [[0,0,0]]
-            else:
-                return []
-            
-        results = set()
-        nums = sorted(numDict.keys())
-        
-        for idx, num in enumerate(nums):
-            for endIdx in range(len(nums)-1, idx-1, -1):
-                candidate = -(num + nums[endIdx])
-                if candidate in numDict:
-                    if (candidate == num and candidate == nums[endIdx] and len(numDict[num]) > 2) or \
-                        (candidate == num and nums[endIdx] != candidate and len(numDict[candidate]) > 1) or \
-                        (nums[endIdx] == num and candidate != num and len(numDict[num]) > 1) or \
-                        (candidate == nums[endIdx] and nums[endIdx] != num and len(numDict[candidate]) > 1) or \
-                        (candidate != num and candidate != nums[endIdx] and num != nums[endIdx]):
-                        results.add(tuple(sorted([num, nums[endIdx], candidate])))
+            while idx < r:
+                threeSum = num+nums[idx]+nums[r] 
+                if threeSum > 0:
+                    r -= 1
+                elif threeSum < 0:
+                    idx += 1
+                else:
+                    result.append([num, nums[idx], nums[r]])
+                    
+                    while idx < r and nums[r] == nums[r-1]:
+                        r-=1
+                    while idx < r and nums[idx] == nums[idx+1]:
+                        idx+=1
+                    r-=1
+                    idx+=1
+                  
+                    
+        return result
                 
-                
-        return results
                     
                     
         
