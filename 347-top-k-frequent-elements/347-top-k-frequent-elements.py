@@ -6,12 +6,17 @@ class Solution:
         for num in nums:
             hmap[num] += 1
             
-        q = []
-        result = []
+        buckets = [0] * (len(nums)+1)
+        result = []  
         for key, value in hmap.items():
-            heappush(q , (-value, key))
+            if not buckets[value]:
+                buckets[value] = []
+            buckets[value].append(key)
             
-        for _ in range(k):
-            result.append(heappop(q)[1])
+        for values in buckets[::-1]:
+            if values:
+                result += values
+            if len(result) == k:
+                break
             
         return result
