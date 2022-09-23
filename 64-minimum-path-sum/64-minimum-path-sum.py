@@ -1,13 +1,14 @@
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        @lru_cache
-        def minSearch(x, y):
-            if x == len(grid[0]) - 1 and y == len(grid) - 1:
-                return grid[y][x]
-            
-            elif x >= len(grid[0]) or y >= len(grid):
-                return float("inf")
-            
-            return grid[y][x] + min(minSearch(x+1, y), minSearch(x, y+1))
-                
-        return minSearch(0,0)
+        
+        for idx, cell in enumerate(grid[0][1:], 1):
+            grid[0][idx] += grid[0][idx-1]
+        
+        for y, row in enumerate(grid[1:], 1):
+            for x, cell in enumerate(row):
+                if x > 0:
+                    grid[y][x] += min(grid[y][x-1], grid[y-1][x])
+                else:
+                    grid[y][x] += grid[y-1][x]
+     
+        return grid[-1][-1]
